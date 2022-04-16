@@ -22,7 +22,6 @@ ob [
     dt DateOnlyProp = 01-01-2000;
     sn ScientificNumber = 6.378571651179064e+17;
 
-
     bi BinaryProp = [
         
     ];
@@ -67,6 +66,15 @@ ob [
                 <heading>Reminder</heading>
             <body>Don't forget me this weekend!</body>
         </note>
+    ];
+
+    sq SQLProperty = [
+        Iq = true;
+        Tx = "select * from Users where Id=@IdParam and Name=@NameParam";
+        Ps = [
+            IdParam = "12198";
+            NameParam = "John";
+        ]
     ];
 ]
 ```
