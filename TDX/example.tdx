@@ -20,7 +20,9 @@ ob [
     dt DateTimeProp = 637857165117906400; //stored in ticks
     ts TimeSpanProp = 10000000; //stored in ticks
     dt DateOnlyProp = 01-01-2000;
-    
+    sn ScientificNumber = 6.378571651179064e+17;
+
+
     bi BinaryProp = [
         
     ];
