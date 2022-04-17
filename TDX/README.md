@@ -6,7 +6,7 @@ TDX, or short for Typed Data Exchange is a plain text data exchange format that 
 
 TDX supports the following types:
 
-- ModId: **id<T>**
+- ModId: **id\<T\>**
 - Guid: **gi**
 - String: **st**
 - Integer: **in**
@@ -20,7 +20,7 @@ TDX supports the following types:
 - DateTime: **dt**
 - DateOnly: **do**
 - Binary: **bi**
-- Arrays: **ar<T>**
+- Arrays: **ar\<T\>**
 - Objects: **ob**
 - Json: **jn**
 - XML: **xm**
