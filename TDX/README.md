@@ -6,7 +6,7 @@ TDX, or short for Typed Data Exchange is a plain text data exchange format that 
 
 TDX supports the following types:
 
-- ModId: **id\<T\>**
+- ModId: **id\<T\>**, *An ID always auto=generates a value on insert unless a value is already specified*
 - Guid: **gi**
 - String: **st**
 - Integer: **in**
@@ -24,3 +24,5 @@ TDX supports the following types:
 - Objects: **ob**
 - Json: **jn**
 - XML: **xm**
+- Expression: **ex\<T\>**, *Expressions are properties that are calculated on query, it must always appear before the fields it references*
+

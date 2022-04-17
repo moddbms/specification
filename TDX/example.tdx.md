@@ -2,9 +2,9 @@
 
 ```
 ob [
-    //comment
+    /*comment*/
 
-    // data types
+    /*data types*/
     gi GuidProp = a84b9555-159d-4618-bde7-9c5c9fd1736d;
     
     st StringProp = "this is a string";
@@ -18,10 +18,10 @@ ob [
     ob ObjectProp = [
         st StringChildProp = "this is a child property"
     ];
-    dy DynamicProp = st "enter any type here"; // for dynamic value, the type should be in the value
-    dt DateTimeProp = 637857165117906400; //stored in ticks
-    ts TimeSpanProp = 10000000; //stored in ticks
-    dt DateOnlyProp = 01-01-2000; // DD-MM-YYYY
+    dy DynamicProp = st "enter any type here"; /* for dynamic value, the type should be in the value */
+    dt DateTimeProp = 637857165117906400; /* stored in ticks */
+    ts TimeSpanProp = 10000000; /* stored in ticks */
+    dt DateOnlyProp = 01-01-2000; /* DD-MM-YYYY */
     sn ScientificNumber = 6.378571651179064e+17;
 
     // IDs
@@ -62,9 +62,8 @@ ob [
         }
     }
 
-
     jn JsonProperty = [{
-        "Title": 1756,
+        "Count": 1756,
     }];
 
     xm XmlProperty = [
@@ -83,6 +82,11 @@ ob [
             IdParam = "12198";
             NameParam = "John";
         ]
+    ];
+
+    /* todo */
+    ex<in> ExpressionProperty = [
+        rt GetJsonField("Title", JsonProperty);
     ];
 ]
 ```
