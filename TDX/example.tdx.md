@@ -6,8 +6,7 @@ ob [
 
     // data types
     gi GuidProp = a84b9555-159d-4618-bde7-9c5c9fd1736d;
-    id<gi> ModSQLIdProp = a84b9555-159d-4618-bde7-9c5c9fd1736d;
-
+    
     st StringProp = "this is a string";
     in IntegerProp = 0;
     dc DecimalProp = 0.5;
@@ -19,14 +18,20 @@ ob [
     ob ObjectProp = [
         st StringChildProp = "this is a child property"
     ];
-    dy DynamicProp = st "enter any type here";
+    dy DynamicProp = st "enter any type here"; // for dynamic value, the type should be in the value
     dt DateTimeProp = 637857165117906400; //stored in ticks
     ts TimeSpanProp = 10000000; //stored in ticks
-    dt DateOnlyProp = 01-01-2000;
+    dt DateOnlyProp = 01-01-2000; // DD-MM-YYYY
     sn ScientificNumber = 6.378571651179064e+17;
 
+    // IDs
+    id<gi> ModSQLIdProp = a84b9555-159d-4618-bde7-9c5c9fd1736d;
+    id<in> IntegerIdProp = 283457;
+
+
     bi BinaryProp = [
-        
+        0000b50: 0400 0000 ffff 0900 0000 ffff 0900 0000 ................
+        0000b60: ffff 0900 0000 ffff 0900 0000 ffff 0900 ............0..@
     ];
 
     //arrays
