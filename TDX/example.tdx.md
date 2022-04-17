@@ -5,6 +5,9 @@ ob [
     //comment
 
     // data types
+    gi GuidProp = a84b9555-159d-4618-bde7-9c5c9fd1736d;
+    id<gi> ModSQLIdProp = a84b9555-159d-4618-bde7-9c5c9fd1736d;
+
     st StringProp = "this is a string";
     in IntegerProp = 0;
     dc DecimalProp = 0.5;
