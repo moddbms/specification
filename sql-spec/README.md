@@ -8,19 +8,21 @@ The supported types are defined in the <a>TDX specification</a>
 
 ## Operators
 
-- is (equals)
-- not (is not)
-- lt (less than)
-- lte (less than or equal)
-- gt (greater than)
-- gte (greater than or equal)
-- in (value in array)
-- and (combiner)
-- or (combiner)
+**Normal Operators**
+- == (equals)
+- != (is not)
+- < (less than)
+- <= (less than or equal)
+- \> (greater than)
+- \>= (greater than or equal)
+- >| (value in array)
+- && (and)
+- || (or)
 
-- xis
-- xin
-- xor
+**XQuery Operators**
+- is
+- in
+- or
 
 ## Examples
 
@@ -86,53 +88,65 @@ insert [UserId=new_guid(), Username='Username'] into Users return x.UserId
 #### Query
 *select where value==property*
 ```sql
-select * from Users where Username is 'MyUsername';
+select * from Users where Username == 'MyUsername';
 ```
-
-*Xselect - select Username where value is Username 1 or Username 2*
-```sql
-select * from Users where Username xis ('Username 1' xor 'Username 2');
-```
-
 *select where less than 10*
 ```sql
-select * from Users where RandomNumber lt 10;
+select * from Users where RandomNumber < 10;
 ```
+*Xselect - select Username where value is Username 1 or Username 2*
+```sql
+select * from Users where Username is ('Username 1' or 'Username 2');
+```
+*Select where Amount is in between 5000 and 100000*
+```sql
+select from Wallets where Amount is (> 5000 and < 100000);
+```
+* '_' stands for 'this'*
+```sql
+select from Wallets where Amount is (5000 < _ < 100000);
+```
+*Query where length of property is > 5*
+```sql
+select * from Users where Username is ('Username 1' or (LENGTH(_) > 5));
+```
+
+
 
 #### Update
 *simple update*
 ```sql
-update Users set Field1='new value' where Field is 'value';
+update Users set Field1='new value' where Field == 'value';
 ```
 *update multiple tables*
 ```sql
-update Users, Profiles set Users.Username='New Username', Profiles.Username='New Username' where Users.Id is @idParam on Users.Id is Profiles.UserId;
+update Users, Profiles set Users.Username='New Username', Profiles.Username='New Username' where Users.Id == @idParam on Users.Id == Profiles.UserId;
 ```
 
 #### Count
 ```sql
-count Users where NumericField gt 5;
+count Users where NumericField > 5;
 ```
 
 #### Delete
 ```sql
-delete from Users where Username is 'Username';
+delete from Users where Username == 'Username';
 ```
 
 #### LINK/JOIN
 *Full outer join*
 ```sql
-link Table1, Table2 where Table1.Id is @idParam on Table1.OtherId is Table2.OtherId;
+link Table1, Table2 where Table1.Id is @idParam on Table1.OtherId == Table2.OtherId;
 ```
 *Inner join*
 ```sql
-match link Table1, Table2 where Table1.Id is @idParam on Table1.OtherId is Table2.OtherId;
+match link Table1, Table2 where Table1.Id is @idParam on Table1.OtherId == Table2.OtherId;
 ```
 *left join*
 ```sql
-left link Table1, Table2 where Table1.Id is @idParam on Table1.OtherId is Table2.OtherId;
+left link Table1, Table2 where Table1.Id is @idParam on Table1.OtherId == Table2.OtherId;
 ```
 *right join*
 ```sql
-right link Table1, Table2 where Table1.Id is @idParam on Table1.OtherId is Table2.OtherId;
+right link Table1, Table2 where Table1.Id is @idParam on Table1.OtherId == Table2.OtherId;
 ```
