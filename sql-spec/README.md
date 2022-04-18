@@ -73,7 +73,7 @@ insert [UserId = '075b817f-5979-48f5-8672-31120fd44502', Permissions = st {
 ```
 *Inserting dynamic array*
 ```sql
-insert [UserId = '075b817f-5979-48f5-8672-31120fd44502', Permissions = dy {
+insert [UserId = id<gi> '075b817f-5979-48f5-8672-31120fd44502', Permissions = dy {
     st 'Write',
     in 5
 }] into Users
