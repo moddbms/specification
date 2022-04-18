@@ -15,9 +15,10 @@ The supported types are defined in the <a>TDX specification</a>
 - <= (less than or equal)
 - \> (greater than)
 - \>= (greater than or equal)
-- >| (value in array)
+- \>| (value in array)
 - && (and)
 - || (or)
+- \>| / => (in)
 
 **XQuery Operators**
 - is
