@@ -76,7 +76,7 @@ insert [UserId = '075b817f-5979-48f5-8672-31120fd44502', Permissions = {
 
 *Insert with return (x represents the modified row)*
 ```sql
-insert [UserId=new_guid(), Username='Username'] into Users return x.Id
+insert [UserId=new_guid(), Username='Username'] into Users return x.UserId
 ```
 
 
