@@ -63,14 +63,14 @@ insert [Id=new_safe_id<gi>(), Username='MyUsername', RandomNumber=10] into Users
 
 *Inserting string array*
 ```sql
-insert [UserId = '075b817f-5979-48f5-8672-31120fd44502', Permissions = st{
+insert [UserId = '075b817f-5979-48f5-8672-31120fd44502', Permissions = st {
     'item 1',
     'item 2'
 }] into Users
 ```
 *Inserting dynamic array*
 ```sql
-insert [UserId = '075b817f-5979-48f5-8672-31120fd44502', Permissions = {
+insert [UserId = '075b817f-5979-48f5-8672-31120fd44502', Permissions = dy {
     st 'Write',
     in 5
 }] into Users
@@ -94,8 +94,13 @@ select * from Users where RandomNumber lt 10;
 ```
 
 #### Update
+*simple update*
 ```sql
 update Users set Field1='new value' where Field is 'value';
+```
+*update multiple tables*
+```sql
+update Users, Profiles set Users.Username='New Username', Profiles.Username='New Username' where Users.Id is @idParam on Users.Id is Profiles.UserId;
 ```
 
 #### Count
