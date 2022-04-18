@@ -18,6 +18,8 @@ The supported types are defined in the <a>TDX specification</a>
 - and (combiner)
 - or (combiner)
 
+- xin
+- xor
 
 ## Examples
 
@@ -92,7 +94,6 @@ select * from Users where RandomNumber lt 10;
 ```
 
 #### Update
-
 ```sql
 update Users set Field1='new value' where Field is 'value';
 ```
@@ -105,4 +106,22 @@ count Users where NumericField gt 5;
 #### Delete
 ```sql
 delete from Users where Username is 'Username';
+```
+
+#### LINK/JOIN
+*Full outer join*
+```sql
+link Table1, Table2 where Table1.Id is @idParam on Table1.OtherId is Table2.OtherId;
+```
+*Inner join*
+```sql
+match link Table1, Table2 where Table1.Id is @idParam on Table1.OtherId is Table2.OtherId;
+```
+*left join*
+```sql
+left link Table1, Table2 where Table1.Id is @idParam on Table1.OtherId is Table2.OtherId;
+```
+*right join*
+```sql
+right link Table1, Table2 where Table1.Id is @idParam on Table1.OtherId is Table2.OtherId;
 ```
