@@ -19,52 +19,52 @@ The supported types are defined in the <a>TDX specification</a>
 ## Examples
 
 #### Create and load database
-```s
+```sql
 create db MyDemoDatabase;
 load MyDemoDatabase;
 ```
 
 #### Create table without ID
-```s
+```sql
 create table Users;
 ```
 
 #### Create table with Guid ID
 *Guid type ID*
-```s
+```sql
 create table Users with id<gi>('Id');
 ```
 
 *Integer type ID*
-```s
+```sql
 create table Users with id<in>('Id');
 ```
 
 #### Insert into table without ID
-```s
+```sql
 insert [Username = 'MyUsername', Password = 'Password', CreationDate = utcnow()] into Users;
 ```
 
 #### Insert into table with ID
 *If id is not defined, it will get added automatically*
-```s
+```sql
 insert [Id = new_guid(), Username = 'MyUsername'] into Users;
 ```
 
 *New ID with type GUID verifying if already in table*
-```s
+```sql
 insert [Id=new_safe_id<gi>(), Username='MyUsername', RandomNumber=10] into Users;
 ```
 
 *Inserting string array*
-```s
+```sql
 insert [UserId = '075b817f-5979-48f5-8672-31120fd44502', Permissions = st{
     'item 1',
     'item 2'
 }] into Users
 ```
 *Inserting dynamic array*
-```s
+```sql
 insert [UserId = '075b817f-5979-48f5-8672-31120fd44502', Permissions = st{
     'item 1',
     'item 2'
