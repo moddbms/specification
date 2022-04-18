@@ -95,11 +95,20 @@ select * from Users where Username == 'MyUsername';
 ```sql
 select * from Users where RandomNumber < 10;
 ```
+*select where property in array*
+```sql
+select Username, Password where Username => (str {
+    'Mike',
+    'Matt',
+    'Sarah',
+    'Eliah'
+});
+```
 *Xselect - select Username where value is Username 1 or Username 2*
 ```sql
 select * from Users where Username is ('Username 1' or 'Username 2');
 ```
-*Select where Amount is in between 5000 and 100000*
+*XSelect where Amount is in between 5000 and 100000*
 ```sql
 select from Wallets where Amount is (> 5000 and < 100000);
 ```
@@ -107,7 +116,7 @@ select from Wallets where Amount is (> 5000 and < 100000);
 ```sql
 select from Wallets where Amount is (5000 < _ < 100000);
 ```
-*Query where length of property is > 5*
+*XQuery where length of property is > 5*
 ```sql
 select * from Users where Username is ('Username 1' or (LENGTH(_) > 5));
 ```
