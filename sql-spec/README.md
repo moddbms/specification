@@ -15,6 +15,9 @@ The supported types are defined in the <a>TDX specification</a>
 - gt (greater than)
 - gte (greater than or equal)
 - in (value in array)
+- and (combiner)
+- or (combiner)
+
 
 ## Examples
 
@@ -65,16 +68,41 @@ insert [UserId = '075b817f-5979-48f5-8672-31120fd44502', Permissions = st{
 ```
 *Inserting dynamic array*
 ```sql
-insert [UserId = '075b817f-5979-48f5-8672-31120fd44502', Permissions = st{
-    'item 1',
-    'item 2'
+insert [UserId = '075b817f-5979-48f5-8672-31120fd44502', Permissions = {
+    st 'Write',
+    in 5
 }] into Users
 ```
 
+*Insert with return (x represents the modified row)*
+```sql
+insert [UserId=new_guid(), Username='Username'] into Users return x.Id
+```
 
-#### Query a row
+
+#### Query rows
 *select where value==property*
-`select * from Users where Username is 'MyUsername'`
+```sql
+select * from Users where Username is 'MyUsername';
+```
 
 *select where less than 10*
-`select * from Users where RandomNumber lt 10`
+```sql
+select * from Users where RandomNumber lt 10;
+```
+
+#### Update
+
+```sql
+update Users set Field1='new value' where Field is 'value';
+```
+
+#### Count
+```sql
+count Users where NumericField gt 5;
+```
+
+#### Delete
+```sql
+delete from Users where Username is 'Username';
+```
