@@ -18,6 +18,7 @@ The supported types are defined in the <a>TDX specification</a>
 - and (combiner)
 - or (combiner)
 
+- xis
 - xin
 - xor
 
@@ -64,8 +65,8 @@ insert [Id=new_safe_id<gi>(), Username='MyUsername', RandomNumber=10] into Users
 *Inserting string array*
 ```sql
 insert [UserId = '075b817f-5979-48f5-8672-31120fd44502', Permissions = st {
-    'item 1',
-    'item 2'
+    'Read',
+    'Write'
 }] into Users
 ```
 *Inserting dynamic array*
@@ -82,10 +83,15 @@ insert [UserId=new_guid(), Username='Username'] into Users return x.UserId
 ```
 
 
-#### Query rows
+#### Query
 *select where value==property*
 ```sql
 select * from Users where Username is 'MyUsername';
+```
+
+*Xselect - select Username where value is Username 1 or Username 2*
+```sql
+select * from Users where Username xis ('Username 1' xor 'Username 2');
 ```
 
 *select where less than 10*
