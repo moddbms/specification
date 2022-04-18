@@ -18,7 +18,7 @@ The supported types are defined in the <a>TDX specification</a>
 - \>| (value in array)
 - && (and)
 - || (or)
-- \>| / => (in)
+- => (in)
 
 **XQuery Operators**
 - is
