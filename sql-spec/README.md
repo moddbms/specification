@@ -33,20 +33,21 @@ create db MyDemoDatabase;
 load MyDemoDatabase;
 ```
 
-#### Create table without ID
+#### Create table
 ```sql
 create table Users;
 ```
-
-#### Create table with Guid ID
 *Guid type ID*
 ```sql
-create table Users with id<gi>('Id');
+create table Users with id<gid>('Id');
 ```
-
 *Integer type ID*
 ```sql
-create table Users with id<in>('Id');
+create table Users with id<int>('Id');
+```
+*Specific string encoding*
+```sql
+create table Users with encoding('unicode') and id<gid>('Id'); 
 ```
 
 #### Insert into table without ID
@@ -67,14 +68,14 @@ insert [Id=new_safe_id<gi>(), Username='MyUsername', RandomNumber=10] into Users
 
 *Inserting string array*
 ```sql
-insert [UserId = '075b817f-5979-48f5-8672-31120fd44502', Permissions = st {
+insert [UserId = '075b817f-5979-48f5-8672-31120fd44502', Permissions = str {
     'Read',
     'Write'
 }] into Users
 ```
 *Inserting dynamic array*
 ```sql
-insert [UserId = id<gi> '075b817f-5979-48f5-8672-31120fd44502', Permissions = dy {
+insert [UserId = id<gi> '075b817f-5979-48f5-8672-31120fd44502', Permissions = dyn {
     st 'Write',
     in 5
 }] into Users
@@ -118,7 +119,7 @@ select from Wallets where Amount is (5000 < _ < 100000);
 ```
 *XQuery where length of property is > 5*
 ```sql
-select * from Users where Username is ('Username 1' or (LENGTH(_) > 5));
+select * from Users where Username is ('Username 1' or (length(_) > 5));
 ```
 
 
