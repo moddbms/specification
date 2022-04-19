@@ -1,12 +1,12 @@
-# Typed Data Exchange format specification
+# Typed Data Exchange Format Specification
 
-## What is TDX
+## What is TDX?
 
-TDX, or short for Typed Data Exchange is a plain text data exchange format that supports multiple different types of data, it is the primary means of exchange between ModSQL clients and servers.
+TDX, short for Typed Data Exchange, is a plain text data exchange format that supports multiple different types of data. It is the primary means of exchange between ModSQL clients and servers.
 
 TDX supports the following types:
 
-- ModId: **id\<T\>**, *An ID always auto=generates a value on insert unless a value is already specified*
+- ModId: **id\<T\>**, *An ID always auto-generates a value on insert unless a value is already specified*
 - Guid: **gid**
 - String: **str**
 - Integer: **int**
@@ -25,5 +25,5 @@ TDX supports the following types:
 - Json: **jsn**
 - XML: **xml**
 - SQL: **sql**
-- Expression: **exp\<T\>**, *Expressions are properties that are calculated on query, it must always appear before the fields it references*
+- Expression: **exp\<T\>**, *Expressions are properties that are calculated on a query. It must always appear before the field(s) it references*
 
