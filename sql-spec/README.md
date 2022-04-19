@@ -2,9 +2,9 @@
 
 ## Intro
 
-ModSQL uses an SQL variant called mSQL (Short for "modular")
-mSQL does not specify a schema when creating a table, you can insert into non-existant columns and it will create them for you
-The supported types are defined in the <a>TDX specification</a>
+ModSQL uses an SQL variant called **mSQL** (short for "modular").
+**mSQL** does not specify a schema when creating a table. You can insert into nonexistent columns and it will create them for you.
+The supported types are defined in the [`TDX Specification`](https://github.com/modsql/specification/blob/master/TDX/README.md).
 
 ## Operators
 
