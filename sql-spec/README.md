@@ -98,13 +98,19 @@ select * from Users where RandomNumber < 10;
 ```
 *select where property in array*
 ```sql
-select Username, Password where Username => (str {
+select Username, Password from Users where Username => (str {
     'Mike',
     'Matt',
     'Sarah',
     'Eliah'
 });
 ```
+*select where value in array property*
+```sql
+select Username, FullName from Users where 'JakeId' => FriendsArray;
+```
+
+
 *Xselect - select Username where value is Username 1 or Username 2*
 ```sql
 select * from Users where Username is ('Username 1' or 'Username 2');
