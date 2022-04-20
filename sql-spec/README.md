@@ -107,7 +107,7 @@ select Username, Password from Users where Username => (str {
 ```
 *select where value in array property*
 ```sql
-select Username, FullName from Users where 'JakeId' => FriendsArray;
+select Username, FullName from Users where 'Jake' => FriendsArray;
 ```
 
 
