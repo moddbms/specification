@@ -54,6 +54,10 @@ create table Users with encoding('unicode') and id<gid>('Id');
 ```sql
 insert [Username = 'MyUsername', Password = 'Password', CreationDate = utcnow()] into Users;
 ```
+*Insert multiple rows in a single statement*
+```sql
+insert [Username = 'MyUsername', Password = 'Password', CreationDate = utcnow()], [Username = 'username2'] into Users;
+```
 
 #### Insert into table with ID
 *If id is not defined, it will get added automatically*
@@ -98,7 +102,7 @@ select * from Users where RandomNumber < 10;
 ```
 *select where property in array*
 ```sql
-select Username, Password from Users where Username => (str {
+select Username, Email from Users where Username => (str {
     'Mike',
     'Matt',
     'Sarah',
