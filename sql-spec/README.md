@@ -157,17 +157,39 @@ delete from Users where Username == 'Username';
 #### LINK/JOIN
 *Full outer join*
 ```sql
-link Table1, Table2 where Table1.Id is @idParam on Table1.OtherId == Table2.OtherId;
+link Table1, Table2 where Table1.Id == @idParam on Table1.OtherId == Table2.OtherId;
 ```
 *Inner join*
 ```sql
-match link Table1, Table2 where Table1.Id is @idParam on Table1.OtherId == Table2.OtherId;
+match link Table1, Table2 where Table1.Id == @idParam on Table1.OtherId == Table2.OtherId;
 ```
 *left join*
 ```sql
-left link Table1, Table2 where Table1.Id is @idParam on Table1.OtherId == Table2.OtherId;
+left link Table1, Table2 where Table1.Id == @idParam on Table1.OtherId == Table2.OtherId;
 ```
 *right join*
 ```sql
-right link Table1, Table2 where Table1.Id is @idParam on Table1.OtherId == Table2.OtherId;
+right link Table1, Table2 where Table1.Id == @idParam on Table1.OtherId == Table2.OtherId;
+```
+
+#### CURSORS
+
+Innactive cursors should be dropped after 5 minutes of inactivity by default
+
+*create cursor query*
+```sql
+cursor CursorName select * from Table1 where BoolProperty == true;
+```
+*move through dataset*
+```sql
+cursor CursorName move next 100;
+```
+*drop cursor*
+```sql
+drop cursor CursorName;
+```
+
+#### INDEXES
+```sql
+ensure index for Table1 on Property1, Property2; 
 ```
