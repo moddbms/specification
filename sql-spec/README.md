@@ -25,23 +25,47 @@ The supported types are defined in the [`TDX Specification`](https://github.com/
 - in
 - or
 
-**Data Types**
-- guid / id
+## Data Types 
+
+- id<T>
 - string
+    - Denoted with:
+         - `string` keyword (in case of arrays)
+         - string literal syntax (`"this is a string literal"`)
+- character
+    - Denoted with:
+        - `character` keyword (in case of arrays)
+        - character literal syntax (`'c'`)
 - short
+    - Denoted with: `short` keyword
 - int
+    - Denoted with: `int` keyword
 - long
+    - Denoted with: `long` keyword
 - bigint
+    - Denoted with: `bigint` keyword
 - decimal
+    - Denoted with: `decimal` keyword 
 - bigdecimal
+    - Denoted with: `bigdecimal` keyword
 - bool
+    - Denoted with:
+        - `bool` keyword (in case of arrays)
+        -  boolean literal syntax (`true` or `false`)
 - script
 - object
 - dynamic (parent type only)
+    - Denoted with:
+        - `dynamic` keyword, followed by curly brackets on each side (`dynamic { // inside dynamic }`)
 - datetime
 - timespan
 - binary
-- array
+- array<T>
+    - Denoted with:
+        - curly brackets on each side (`{ // inside array }`)
+    - Syntax:
+        - Inferred array: `{ "type of the first element in array is T. This is a string array" }`
+        - Explicit array: `string { "hello", "world", "the T is string" }`
 - json
 - xml
 - sql
@@ -61,64 +85,64 @@ create table Users;
 ```
 *Create with Id property*
 ```sql
-create table Users with id('IdPropertyName');
+create table Users with id("IdPropertyName");
 ```
 *Specific string encoding*
 ```sql
-create table Users with encoding('unicode') and id('Id'); 
+create table Users with encoding("unicode") and id("Id"); 
 ```
 
 #### Insert into table without ID
 ```sql
-insert [Username = 'MyUsername', Password = 'Password', CreationDate = utcnow()] into Users;
+insert [Username = "MyUsername", Password = "Password", CreationDate = utcnow()] into Users;
 ```
 *Insert multiple rows in a single statement*
 ```sql
-insert [Username = 'MyUsername', Password = 'Password', CreationDate = utcnow()], [Username = 'username2'] into Users;
+insert [Username = "MyUsername", Password = "Password", CreationDate = utcnow()], [Username = "username2"] into Users;
 ```
 
 #### Insert into table with ID
 *If id is not defined, it will get added automatically*
 ```sql
-insert [Id = newid(), Username = 'MyUsername'] into Users;
+insert [Id = newid(), Username = "MyUsername"] into Users;
 ```
 *New ID will get generated automatically*
 ```sql
-insert [Username='MyUsername', RandomNumber=10] into Users;
+insert [Username="MyUsername", RandomNumber=10] into Users;
 ```
 
 *Inserting inferred string array*
 ```sql
-insert [UserId = '075b817f-5979-48f5-8672-31120fd44502', Permissions = {
-    'Read',
-    'Write'
-}] into Users
+insert [UserId = id<gi> 075b817f-5979-48f5-8672-31120fd44502, Permissions = {
+    "Read",
+    "Write"
+}] into Users;
 ```
 
 *Inserting explicit string array*
 ```sql
-insert [UserId = '075b817f-5979-48f5-8672-31120fd44502', Permissions = string {
-    'Read',
-    'Write'
-}] into Users
+insert [UserId = id<gi> 075b817f-5979-48f5-8672-31120fd44502, Permissions = string {
+    "Read",
+    "Write"
+}] into Users;
 ```
 *Inserting dynamic array*
 ```sql
-insert [UserId = id<gi> '075b817f-5979-48f5-8672-31120fd44502', Permissions = dynamic {
-    string 'Write',
+insert [UserId = id<gi> 075b817f-5979-48f5-8672-31120fd44502, Permissions = dynamic {
+    string "Write",
     int 5
-}] into Users
+}] into Users;
 ```
 *Insert with return (x represents the modified row)*
 ```sql
-insert [UserId=newid(), Username='Username'] into Users return x.UserId
+insert [UserId=newid(), Username="Username"] into Users return x.UserId;
 ```
 
 
 #### Query
 *select where value==property*
 ```sql
-select * from Users where Username == 'MyUsername';
+select * from Users where Username == "MyUsername";
 ```
 *select where less than 10*
 ```sql
@@ -126,22 +150,22 @@ select * from Users where RandomNumber < 10;
 ```
 *select where property in array*
 ```sql
-select Username, Email from Users where Username => (str {
-    'Mike',
-    'Matt',
-    'Sarah',
-    'Eliah'
+select Username, Email from Users where Username => (string {
+    "Mike",
+    "Matt",
+    "Sarah",
+    "Eliah"
 });
 ```
 *select where value in array property*
 ```sql
-select Username, FullName from Users where 'Jake' => FriendsArray;
+select Username, FullName from Users where "Jake" => FriendsArray;
 ```
 
 
 *Xselect - select Username where value is Username 1 or Username 2*
 ```sql
-select * from Users where Username is ('Username 1' or 'Username 2');
+select * from Users where Username is ("Username 1' or 'Username 2");
 ```
 *XSelect where Amount is in between 5000 and 100000*
 ```sql
@@ -153,7 +177,7 @@ select from Wallets where Amount is (5000 < _ < 100000);
 ```
 *XQuery where length of property is > 5*
 ```sql
-select * from Users where Username is ('Username 1' or (length(_) > 5));
+select * from Users where Username is ("Username 1" or (length(_) > 5));
 ```
 
 
@@ -161,11 +185,11 @@ select * from Users where Username is ('Username 1' or (length(_) > 5));
 #### Update
 *simple update*
 ```sql
-update Users set Field1='new value' where Field == 'value';
+update Users set Field1="new value" where Field == "value";
 ```
 *update multiple tables*
 ```sql
-update Users, Profiles set Users.Username='New Username', Profiles.Username='New Username' where Users.Id == @idParam on Users.Id == Profiles.UserId;
+update Users, Profiles set Users.Username="New Username", Profiles.Username="New Username" where Users.Id == @idParam on Users.Id == Profiles.UserId;
 ```
 
 #### Count
@@ -175,7 +199,7 @@ count Users where NumericField > 5;
 
 #### Delete
 ```sql
-delete from Users where Username == 'Username';
+delete from Users where Username == "Username";
 ```
 
 #### LINK/JOIN
