@@ -25,6 +25,28 @@ The supported types are defined in the [`TDX Specification`](https://github.com/
 - in
 - or
 
+**Data Types**
+- guid / id
+- string
+- short
+- int
+- long
+- bigint
+- decimal
+- bigdecimal
+- bool
+- script
+- object
+- dynamic (parent type only)
+- datetime
+- timespan
+- binary
+- array
+- json
+- xml
+- sql
+- null (value only)
+
 ## Examples
 
 #### Create and load database
@@ -37,17 +59,13 @@ load MyDemoDatabase;
 ```sql
 create table Users;
 ```
-*Guid type ID*
+*Create with Id property*
 ```sql
-create table Users with id<gid>('Id');
-```
-*Integer type ID*
-```sql
-create table Users with id<int>('Id');
+create table Users with id('IdPropertyName');
 ```
 *Specific string encoding*
 ```sql
-create table Users with encoding('unicode') and id<gid>('Id'); 
+create table Users with encoding('unicode') and id('Id'); 
 ```
 
 #### Insert into table without ID
@@ -62,32 +80,38 @@ insert [Username = 'MyUsername', Password = 'Password', CreationDate = utcnow()]
 #### Insert into table with ID
 *If id is not defined, it will get added automatically*
 ```sql
-insert [Id = new_guid(), Username = 'MyUsername'] into Users;
+insert [Id = newid(), Username = 'MyUsername'] into Users;
+```
+*New ID will get generated automatically*
+```sql
+insert [Username='MyUsername', RandomNumber=10] into Users;
 ```
 
-*New ID with type GUID verifying if already in table*
+*Inserting inferred string array*
 ```sql
-insert [Id=new_safe_id<gi>(), Username='MyUsername', RandomNumber=10] into Users;
+insert [UserId = '075b817f-5979-48f5-8672-31120fd44502', Permissions = {
+    'Read',
+    'Write'
+}] into Users
 ```
 
-*Inserting string array*
+*Inserting explicit string array*
 ```sql
-insert [UserId = '075b817f-5979-48f5-8672-31120fd44502', Permissions = str {
+insert [UserId = '075b817f-5979-48f5-8672-31120fd44502', Permissions = string {
     'Read',
     'Write'
 }] into Users
 ```
 *Inserting dynamic array*
 ```sql
-insert [UserId = id<gi> '075b817f-5979-48f5-8672-31120fd44502', Permissions = dyn {
-    st 'Write',
-    in 5
+insert [UserId = id<gi> '075b817f-5979-48f5-8672-31120fd44502', Permissions = dynamic {
+    string 'Write',
+    int 5
 }] into Users
 ```
-
 *Insert with return (x represents the modified row)*
 ```sql
-insert [UserId=new_guid(), Username='Username'] into Users return x.UserId
+insert [UserId=newid(), Username='Username'] into Users return x.UserId
 ```
 
 
