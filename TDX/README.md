@@ -8,15 +8,20 @@ TDX supports the following types:
 
 - ModId: **id\<T\>**, *An ID always auto-generates a value on insert unless a value is already specified*
 - Guid: **gid**
-- String: **str**
+- String: **string**
+- Character: **character**
+- Short: **short**
 - Integer: **int**
-- Decimal: **dec**
-- Boolean: **bol**
+- Long: **long**
+- BigInt: **bigint**
+- Decimal: **decimal**
+- BigDecimal: **bigdecimal**
+- Boolean: **bool**
 - Hexadecimal: **hex**
 - Scientific Number: **scn**
 - Scripts: **scr**
 - Objects: **obj**
-- Dynamic: **dyn**
+- Dynamic: **dynamic**
 - DateTime: **dtm**
 - TimeSpan: **tsn**
 - DateOnly: **dto**
@@ -27,3 +32,23 @@ TDX supports the following types:
 - SQL: **sql**
 - Expression: **exp\<T\>**, *Expressions are properties that are calculated on a query. It must always appear before the field(s) it references*
 
+
+## Low-Level Implementation of Datatypes
+
+### ModID / GUID
+
+### String and Character
+
+### Numeric Types
+
+### Date/Time Types
+
+### Objects
+
+### Arrays and Dynamic
+
+### Expressions
+
+### Data Format Types
+
+### Binary Type
