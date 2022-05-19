@@ -10,14 +10,22 @@ The supported types are defined in the [`TDX Specification`](https://github.com/
 ```text
 KEYWORD
     : DatatypeKwd
-        : "string"
-        | "int"
-        | "character
-        | …
+        : string
+        | character
+        | int
+        | short
+        | long
+        | bigint
+        | decimal
+        | bigdecimal
+        | hex (hexadecimal)
+        | scn (scientific number)
+        | dynamic
+        | bool
     | QueryKwd
-       : "select"
-       | "insert"
-       | "update"
+       : select
+       | insert
+       | update
        | …
 
 QUERY
@@ -29,103 +37,70 @@ QUERY
 STATEMENT
     : QUERY
     | …
-    ";"
+    ;
 
 OPERATOR
     : Unary
         : …
     | Binary
-        : …
+        : Logical
+            : &&
+            | ||
+        | Arithmetic
+            : +
+            | -
+            | *
+            | /
+            | %
+        | Relationship
+            : <
+            | <=
+            | >
+            | >=
+        | Equality
+            : ==
+            | !=
+        | Location
+            : >|
+            | =>
+        | = (assignment)
     | XQuery
-        : …
+        : or
+        | in
+        | is 
+        | and
     | …
 
 LITERAL
     : "string literal"
-    | 'c'
-    | …
+    | 'c' (character literal)
+    | true (boolean literal)
+    | false (boolean literal)
+    | 0x (hexadecimal literal)
+    | BASEeEXP (scientific number literal)
+    | null (null literal; value only)
+    | dynamic { (body) } (dynamic literal) 
+    | Array Literal
+        : { (body) } (inferred array; T is type of firrst element)
+        | T { (body) } (explicit array; T defined before array body)
+    | ...
 
 SEPARATOR
-    : " "
-    | "\t"
-    | "\n"
-    | "// single line comment"
-    | "/* multi line comment */"
-    | "("
-    | ")"
-    | "[
-    | "]"
-    | "{"
-    | "}"
+    : " " (whitespace)
+    | \t
+    | \n
+    | // single line comment
+    | /* multi line comment */
+    | (
+    | )
+    | [
+    | ]
+    | {
+    | }
     
 EXPRESSION 
     : …
 ```
-
-## Operators
-
-**Normal Operators**
-- == (equals)
-- != (is not)
-- < (less than)
-- <= (less than or equal)
-- \> (greater than)
-- \>= (greater than or equal)
-- \>| (value in array)
-- && (and)
-- || (or)
-- => (in)
-
-**XQuery Operators**
-- is
-- in
-- or
-
-## Data Types 
-
-- id<T>
-- string
-    - Denoted with:
-         - `string` keyword (in case of arrays)
-         - string literal syntax (`"this is a string literal"`)
-- character
-    - Denoted with:
-        - `character` keyword (in case of arrays)
-        - character literal syntax (`'c'`)
-- short
-    - Denoted with: `short` keyword
-- int
-    - Denoted with: `int` keyword
-- long
-    - Denoted with: `long` keyword
-- bigint
-    - Denoted with: `bigint` keyword
-- decimal
-    - Denoted with: `decimal` keyword 
-- bigdecimal
-    - Denoted with: `bigdecimal` keyword
-- bool
-    - Denoted with:
-        - `bool` keyword (in case of arrays)
-        -  boolean literal syntax (`true` or `false`)
-- script
-- object
-- dynamic (parent type only)
-    - Denoted with:
-        - `dynamic` keyword, followed by curly brackets on each side (`dynamic { // inside dynamic }`)
-- datetime
-- timespan
-- binary
-- array<T>
-    - Denoted with:
-        - curly brackets on each side (`{ // inside array }`)
-    - Syntax:
-        - Inferred array: `{ "type of the first element in array is T. This is a string array" }`
-        - Explicit array: `string { "hello", "world", "the T is string" }`
-- json
-- xml
-- sql
-- null (value only)
 
 ## Examples
 
