@@ -6,7 +6,7 @@ ModSQL uses an SQL variant called **mSQL** (short for "modular").
 **mSQL** does not specify a schema when creating a table. You can insert into nonexistent columns and it will create them for you.
 The supported types are defined in the [`TDX Specification`](https://github.com/modsql/specification/blob/master/TDX/README.md), which also explains how the data types are implemented.
 
-## Grammar (Backus-Naur Form)
+## Grammar 
 ```text
 KEYWORD
     : DatatypeKwd
@@ -54,8 +54,10 @@ KEYWORD
 QUERY
     : QueryKind
         : Simple
+        | Expressive
+        | Predicated
         | Compound
-        | …
+        | Functional
 
 STATEMENT
     : QUERY
@@ -102,10 +104,10 @@ LITERAL
     | 0x (hexadecimal literal)
     | BASEeEXP (scientific number literal)
     | null (null literal; value only)
-    | dynamic { (body) } (dynamic literal) 
+    | dynamic { body } (dynamic literal) 
     | Array Literal
-        : { (body) } (inferred array; T is type of first element)
-        | T { (body) } (explicit array; T defined before array body)
+        : { body } (inferred array; T is type of first element)
+        | T { body } (explicit array; T defined before array body)
     | ...
 
 SEPARATOR
@@ -122,7 +124,7 @@ SEPARATOR
     | }
     
 EXPRESSION 
-    : …
+    : 
 ```
 
 ## Examples
