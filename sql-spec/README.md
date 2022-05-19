@@ -77,6 +77,8 @@ OPERATOR
             | *
             | /
             | %
+            | !
+            | **
         | Relationship
             : <
             | <=
@@ -88,13 +90,20 @@ OPERATOR
         | Location
             : >|
             | =>
+        | Bitwise
+            : &
+            | |
+            | ~
+            | ^
+            | >>
+            | <<
         | = (assignment)
     | XQuery
         : or
         | in
         | is 
         | and
-    | …
+    | _ (this)
 
 LITERAL
     : "string literal"
