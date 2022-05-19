@@ -104,7 +104,7 @@ LITERAL
     | null (null literal; value only)
     | dynamic { (body) } (dynamic literal) 
     | Array Literal
-        : { (body) } (inferred array; T is type of firrst element)
+        : { (body) } (inferred array; T is type of first element)
         | T { (body) } (explicit array; T defined before array body)
     | ...
 
