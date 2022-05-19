@@ -26,12 +26,35 @@ KEYWORD
        : select
        | insert
        | update
-       | …
+       | delete
+       | count
+       | cursor
+       | match
+       | link
+       | right
+       | left
+       | ensure
+       | index
+       | for
+       | where
+       | with
+       | return
+       | set
+       | on
+       | move
+       | next
+       | table
+       | load
+       | db
+       | create
+       | from
+       | into
+       | drop
 
 QUERY
     : QueryKind
-        : SimpleQuery
-        | CompoundQuery
+        : Simple
+        | Compound
         | …
 
 STATEMENT
