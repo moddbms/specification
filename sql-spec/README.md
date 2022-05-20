@@ -23,33 +23,32 @@ KEYWORD
         | dynamic
         | bool
     | QueryKwd
-       : select
-       | insert
-       | update
-       | delete
-       | count
-       | cursor
-       | match
-       | link
-       | right
-       | left
-       | ensure
-       | index
-       | for
-       | where
-       | with
-       | return
-       | set
-       | on
-       | move
-       | next
-       | table
-       | load
-       | db
-       | create
-       | from
-       | into
-       | drop
+        : where
+        | with
+        | return
+        | set
+        | on
+        | move
+        | next
+        | load
+        | from
+        | into
+
+CLAUSE
+    : create table
+    | create db
+    | insert
+    | select
+    | update
+    | count
+    | delete from
+    | link
+    | match link
+    | left link
+    | right link
+    | cursor
+    | drop cursor
+    | ensure index for
 
 QUERY
     : QueryKind
