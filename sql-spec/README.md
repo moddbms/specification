@@ -53,11 +53,10 @@ KEYWORD
 
 QUERY
     : QueryKind
-        : Simple
-        | Expressive
+        : Expressive
         | Predicated
-        | Compound
         | Functional
+        | Compound
 
 STATEMENT
     : QUERY
@@ -137,6 +136,41 @@ SEPARATOR
 EXPRESSION 
     : 
 ```
+
+## Query Kind Deep Dive
+As seen in the grammar section, under `QUERY`, you will see `QueryKind`. `QueryKind` is an enum that defines the different ways a **mSQL** query can be classified. These classifications are:
+- Expressive
+- Predicated
+- Functional
+- Compound
+
+All queries are statements in **mSQL**, meaning they MUST end with a semicolon.
+
+### Expressive Query
+An expressive query is a query that sets values to columns in a table. It can also optionally return something at the end of the query. All queries beginning with the `insert` or `update` clause are expressive. Expressive queries also use the `into` keyword to specify which table is being queried. If the query begins with the `update` clause, it will also make use of the `set` keyword.
+
+Syntax: `QueryClause [IDENT = VAL, ...] into TableName <RETURN>;`
+
+Example: `insert [Username = "MyUsername", Password = "Password", CreationDate = utcnow()], [Username = "username2"] into Users;`
+
+### Predicated Query
+Predicated queries are any query that make use of the `where` keyword to only get data that meets a certain condition.
+
+Syntax: `QueryClause <IDENTS> from TableName where COND;`
+
+Example: `select Username, FullName from Users where "Jake" => FriendsArray;`
+
+### Functional Query
+Functional queries are any query that uses built in functions after the `with` keyword. Functional queries generally start with the `create table` clause to create a table with specific string encoding, for example. The function calls must be separated with the `and` 
+
+Syntax: `QueryClause TableName with FUNCCALL1 and FUNCALL2 and FUNCCALLN;`
+
+Example: `create table Users with encoding("unicode") and id("Id");`
+
+### Compound Query
+A compound query is a query that is a combination of any of the previous three query kinds mentioned. There is no uniform syntax defined for a compound query as it is impossible to know what combinations of query kinds that the compound query will use.
+
+Example: N/A
 
 ## Examples
 
