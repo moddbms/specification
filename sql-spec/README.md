@@ -294,7 +294,7 @@ update Users, Profiles set Users.Username="New Username", Profiles.Username="New
 
 #### Count
 ```sql
-count Users where NumericField > 5;
+count Users where NumericProperty > 5;
 ```
 
 #### Delete
@@ -337,7 +337,51 @@ cursor CursorName move next 100;
 drop cursor CursorName;
 ```
 
+
+#### Procedures and functions
+*create stored procedure, procedures are ACID compliant by default*
+*a procedure accepts arguments and optional ones too, if 'idArg' is not supplied it will have the value of 'null'*
+```sql
+create proc InsertMessage(string arg1, long arg2, guid idArg = null) {
+    var newId = insert [ Content = @arg1, Timestamp = @arg2 ] into Messages return x.Id;
+    
+    #if (idArg == null) {
+        insert [ Username = "someuser", ArrayProp = guid {
+            @newId
+        } ] into Users;
+    } #else {
+        update Users set ArrayProp.Append(@newId) where Id == @idArg;
+    }
+};
+```
+*you can return a value from a procedure, this returns a single list compiled from all the returned properties*
+```sql
+create proc ReturnDataset(){
+    var arrays = select ArrayProp from Table1;
+    return merge_array(arrays);
+}
+```
+
+#### Transactions
+*create a transaction*
+```sql
+create transaction MyTransaction;
+```
+
+*start a transaction*
+```sql
+begin transaction MyTransaction;
+```
+*transaction of the query will be set by rpc request to the server*
+
+*commit and abort*
+```sql
+commit transaction MyTransaction;
+abort transaction MyTransaction;
+```
+
+
 #### INDEXES
 ```sql
-ensure index for Table1 on Property1, Property2; 
+index for Table1 on Property1, Property2; 
 ```
