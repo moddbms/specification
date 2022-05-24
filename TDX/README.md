@@ -6,8 +6,7 @@ TDX, short for Typed Data Exchange, is a plain text data exchange format that su
 
 TDX supports the following types:
 
-- ModId: **id\<T\>**, *An ID always auto-generates a value on insert unless a value is already specified*
-- Guid: **gid**
+- ModId: **id**, *An ID always auto-generates a value on insert unless a value is already specified*
 - String: **string**
 - Character: **character**
 - Short: **short**
@@ -17,8 +16,8 @@ TDX supports the following types:
 - Decimal: **decimal**
 - BigDecimal: **bigdecimal**
 - Boolean: **bool**
-- Hexadecimal: **hex**
-- Scientific Number: **scn**
+<!-- - Hexadecimal: **hex**
+- Scientific Number: **scn** -->
 - Scripts: **scr**
 - Objects: **obj**
 - Dynamic: **dynamic**
@@ -26,11 +25,11 @@ TDX supports the following types:
 - TimeSpan: **tsn**
 - DateOnly: **dto**
 - Binary: **bin**
-- Arrays: **arr\<T\>**
+- Arrays: **arr**
 - Json: **jsn**
 - XML: **xml**
 - SQL: **sql**
-- Expression: **exp\<T\>**, *Expressions are properties that are calculated on a query. It must always appear before the field(s) it references*
+- Expression: **exp**, *Expressions are properties that are calculated on a query. It must always appear before the field(s) it references*
 
 
 ## Low-Level Implementation of Datatypes
