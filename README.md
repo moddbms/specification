@@ -1,6 +1,6 @@
-<h1 align="center">ModEDB Specification</h1>
+<h1 align="center">ModDB Specification</h1>
 
-Welcome to the **ModEDB Specification**! Continue reading to learn about the **mEQL** query language used by **ModEDB**, the data format, supported data types, and the low-level implementations of the data types.
+Welcome to the **ModDB Specification**! Continue reading to learn about the **mQL** query language used by **ModDB**, the data format, supported data types, and the low-level implementations of the data types.
 
 ## Table of Contents
 
@@ -16,7 +16,7 @@ Welcome to the **ModEDB Specification**! Continue reading to learn about the **m
 
 ## Query Language
 
-**ModEDB** uses a query language named **mEQL**, or **Modular Expressive Query Language**. **mEQL** has a syntax different to that of traditional SQL, but the syntax is made to be nice to write, easy to read, and most importantly, nice to look at. It can be classified as:
+**ModDB** uses a query language named **mQL**, or **Modular Query Language**. **mQL** has a syntax different to that of traditional SQL, but the syntax is made to be nice to write, easy to read, and most importantly, nice to look at. It can be classified as:
 
 - Statically and strongly typed
 - Declarative
@@ -47,7 +47,7 @@ sep = " " | "\t" | "\n" | "," | ";" ;
 (* datatypes *) 
 literal = '" ? all visible characters ? "'
 
-(* query *)
+(* queries *)
 query = clause [ ident | "*" ] [ "from" ] "(" ident "=" literal [ { "," ident = literal [ "," ] } ] ")" | ident [ { "," ident [ "," ] } ] "set" { ident "=" literal [ { "," ident = literal [ "," ] } ] | "into" ident | "from" ident | "move next" literal [ "->" predicate] [ "with" proc call [ { "," proc call [ "," ] } ] [ "return" ident ] ;
 
 (* procedures *)
@@ -83,3 +83,5 @@ ident = IDENT ;
 ```
 
 ### Examples
+
+## TDX Data Format
