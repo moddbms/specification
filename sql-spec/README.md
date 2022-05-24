@@ -269,11 +269,11 @@ select * from Users where Username is ("Username 1' or 'Username 2");
 ```
 *XSelect where Amount is in between 5000 and 100000*
 ```sql
-select from Wallets where Amount is (> 5000 and < 100000);
+select * from Wallets where Amount is (> 5000 and < 100000);
 ```
 * '_' stands for 'this'*
 ```sql
-select from Wallets where Amount is (5000 < _ < 100000);
+select * from Wallets where Amount is (5000 < _ < 100000);
 ```
 *XQuery where length of property is > 5*
 ```sql
@@ -342,7 +342,8 @@ drop cursor CursorName;
 *create stored procedure, procedures are ACID compliant by default*
 *a procedure accepts arguments and optional ones too, if 'idArg' is not supplied it will have the value of 'null'*
 ```sql
-create proc InsertMessage(string arg1, long arg2, guid idArg = null) {
+
+create procedure InsertMessage(string arg1, long arg2, guid idArg = null) {
     var newId = insert [ Content = @arg1, Timestamp = @arg2 ] into Messages return x.Id;
     
     #if (idArg == null) {
@@ -353,13 +354,21 @@ create proc InsertMessage(string arg1, long arg2, guid idArg = null) {
         update Users set ArrayProp.Append(@newId) where Id == @idArg;
     }
 };
+
 ```
 *you can return a value from a procedure, this returns a single list compiled from all the returned properties*
 ```sql
 create proc ReturnDataset(){
     var arrays = select ArrayProp from Table1;
-    return merge_array(arrays);
+    return flatten(arrays);
 }
+```
+
+*execute a procedure*
+```sql
+
+execute InsertMessage(@arg1, @arg2);
+
 ```
 
 #### Transactions
