@@ -59,7 +59,7 @@ operator ::= "-/" | "--/" | "<0>" | "~" | "+" | "-"
           | ">>" | "<<" | "=>" | "=" | "_" | "@" 
           | "or" | "is" | "in" | "and" ;
 punctuation ::= "(" | ")" | "[" | "]" | "{" | "}" 
-             | "<" | ">" | "," | ";" ;
+             | "<" | ">" | "," | ";" | "." ;
 literal ::= STRING | CHARACTER | INT | SHORT | LONG | BIGINT 
          | DECIMAL | BIGDECIMAL | HEXADECIMAL | SCIENTIFICNUMBER | DYNAMIC | GUID 
          | "true" | "false" ;
