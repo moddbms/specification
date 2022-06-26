@@ -42,5 +42,9 @@ ModDB uses a simple, modern, and powerful query language called *mQL* (short for
 <!-- - **Functional** - todo -->
 
 
+### Grammar
+
+*mQL* contains an attractive and intuitive syntax with a "somewhat complex" grammar.
+
 ## Data Format
 
